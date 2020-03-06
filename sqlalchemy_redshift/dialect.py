@@ -687,10 +687,13 @@ class RedshiftDialect(PGDialect_psycopg2):
         if isinstance(column_info['type'], VARCHAR):
             if column_info['type'].length is None:
                 column_info['type'] = NullType()
-        if 'info' not in column_info:
-            column_info['info'] = {}
         if encode and encode != 'none':
-            column_info['info']['encode'] = encode
+            if sa.__version__ >= '1.3.0':
+                column_info.setdefault('dialect_options', {})[
+                    'redshift_encode'
+                ] = encode
+            else:
+                column_info.setdefault('info', {})['encode'] = encode
         return column_info
 
     def _get_redshift_relation(self, connection, table_name,
