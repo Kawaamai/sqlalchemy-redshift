@@ -1,7 +1,9 @@
 0.7.8 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Switch from info to keyword arguments for column encoding during reflection
+  for ``SQLAlchemy >= 1.3.0``.
+  (`Issue #192 <https://github.com/sqlalchemy-redshift/sqlalchemy-redshift/issues/192>`_)
 
 
 0.7.7 (2020-02-02)
